@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gastronomia</title>
+    <link rel="shortcut icon" href="../images/global/icons/hackerrank.svg" />
+    <link rel="stylesheet" href="../src/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;600&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/1770fde015.js" crossorigin="anonymous"></script>
+    <script src="../js/cadastrar.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <a href="../index.html">
+            <img src="../images/global/logo.png" alt="imagem de logo" />
+            <p>Hotel H</p>
+        </a>
+        <nav>
+            <ul class="flex">
+                <li>
+                    <a href="../pages/sobre.html">
+                        <img src="../images/global/icons/house-solid.svg" alt="icone de sobre" />
+                        <p>Sobre</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="../pages/acomodacoes.html">
+                        <img src="../images/global/icons/bed-solid.svg" alt="icone de acomodações" />
+                        <p>Acomodacões</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="../pages/gastronomia.html">
+                        <img src="../images/global/icons/utensils-solid.svg" alt="icone de gastronomia" />
+                        <p>Gastronomia</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="../pages/reserva.html">
+                        <img src="../images/global/icons/star-solid.svg" alt="icone de top ofertas" />
+                        <p>Reservas</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="../pages/contato.html">
+                        <img src="../images/global/icons/envelope-solid.svg" alt="icone de contato" />
+                        <p>Contato</p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="flexMenu menuLogin">
+            <select>
+                <option>🇧🇷</option>
+                <option>🇱🇷</option>
+                <option>🇪🇸</option>
+            </select>
+            <ul>
+                <li>
+                    <input type="checkbox" id="login_check" />
+                    <label for="login_check" class="login_label">
+                        <i class="fa-solid fa-bars" id="btn"></i>
+                        <i class="fa-solid fa-xmark" id="cancel"></i>
+                        <p id="visitante">Olá, Visitante!</p>
+                    </label>
+                    <form action="#" method="post">
+                        <div class="login_form">
+                            <ul class="login_list">
+                                <li>
+                                    <input type="email" class="txt" placeholder="E-mail" id="login_email" />
+                                </li>
+                                <li>
+                                    <input type="password" class="txt" placeholder="Senha" id="login_senha" />
+                                </li>
+                                <div class="salvar-senhar">
+                                    <input name="senha" type="checkbox" id="senha" />
+                                    <label for="senha" class="salvar-senha-label">Salvar senha</label>
+                                </div>
+                                <li>
+                                    <button type="button" class="login_button" value="Login" id="login">Login</button>
+                                </li>
+                            </ul>
+                            <div class="login_suporte">
+                                <a href="#">Esqueci minha senha</a>
+                                <a href="#">Não tenho uma conta</a>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+            </ul>
+            <button type="button" id="sair" style="margin: 0;
+                    width: auto;
+                    background: transparent;">
+                <p>Sair</p>
+            </button>
+        </div>
+        <div class="sidebar">
+            <input type="checkbox" id="slide-menu-sidebar" />
+            <label for="slide-menu-sidebar" class="slide-menu-sidebar-label">
+                <i class="fa-solid fa-bars" id="slide-btn"></i>
+                <i class="fa-solid fa-xmark" id="slide-cancel"></i>
+            </label>
+            <div class="menu-sidebar">
+                <ul class="menu-sidebar-lista">
+                    <li class="menu-sidebar-login">
+                        <a href="#">
+                            <label for="login_check" class="sidebar-login-label">
+                                <i class="fa-solid fa-user"></i>
+                                <p id="menu-sidebar-visitante">Login</p>
+                            </label>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#sobre">
+                            <i class="fa-solid fa-house"></i>
+                            <p>Sobre</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../pages/acomodacoes.html">
+                            <i class="fa-solid fa-bed"></i>
+                            <p>Acomodações</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#gastronomia">
+                            <i class="fa-solid fa-utensils"></i>
+                            <p>Gastronomia</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#topOf">
+                            <i class="fa-solid fa-star"></i>
+                            <p>Reservas</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../pages/contato.html">
+                            <i class="fa-solid fa-envelope"></i>
+                            <p>Contato</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main class="registrar">
+        <div class="container">
+            <h2 class="h2-registe">Registre-se</h2>
+            <form class="form-registe" method="post">
+                <label class="label-registe" for="name">Nome:</label>
+                <input class="input-registe name-registe" type="text" id="name" name="name"><br><br>
+
+                <label class="label-registe" for="email">E-mail:</label>
+                <input class="input-registe email-registe" type="email" id="email" name="email"><br><br>
+
+                <label class="label-registe" for="password">Senha:</label>
+                <input class="input-registe password-registe" type="password" id="password" name="password"><br><br>
+
+                <input class="input-submit" type="submit" value="Confirmar">
+            </form>
+        </div>
+
+    </main>
+</body>
+
+</html>
