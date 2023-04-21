@@ -3,7 +3,6 @@ const Inome = document.querySelector('.name-registe');
 const Iemail = document.querySelector('.email-registe');
 const Isenha = document.querySelector('.password-registe');
 
-
 function cadastrar() {
     fetch('http://localhost:8080/usuarios', {
         method: 'POST',
@@ -14,13 +13,13 @@ function cadastrar() {
             nome: Inome.value,
             email: Iemail.value,
             senha: Isenha.value,
-            classeUsuario: 2
+            classeUsuarioId: 2
         }) // Converte os dados para JSON e envia no corpo da requisição
     })
         .then(response => {
             if (response.ok) {
                 // Se a resposta foi bem sucedida, manipula os dados recebidos
-                console.log("Usuário criado com sucesso!");
+                alert("Usuário criado com sucesso!");
             } else {
                 // Se a resposta foi mal sucedida, lança um erro
                 throw new Error("Não foi possível criar o usuário.");

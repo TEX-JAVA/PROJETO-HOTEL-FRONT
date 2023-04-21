@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("checkout-date").setAttribute("min", minCheckoutDate);
 });
 // Final do evento para setar as datas minimas de checkin e checkout antes das outras funções
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     // Objeto com nomes dos serviços e preços
     const servicesAndPrices = {
         "wifi": 16,
@@ -73,14 +73,14 @@ document.addEventListener("DOMContentLoaded", function() {
     // Final dos eventos para o checkin, checkout e adultos
     // Eventos para os quartos
     Object.keys(roomsAndPrices).forEach((room) => {
-            let roomBtn = document.getElementById(`btn-${room}`);
-            roomBtn.addEventListener("click", function (event) {
-                event.preventDefault();
-                room = room;
-                document.getElementById("room-type").value = room;
-                localStorage.setItem("room", room);
-            })
+        let roomBtn = document.getElementById(`btn-${room}`);
+        roomBtn.addEventListener("click", function (event) {
+            event.preventDefault();
+            room = room;
+            document.getElementById("room-type").value = room;
+            localStorage.setItem("room", room);
         })
+    })
     // Final dos eventos para os quartos
     // Código para selecionar os serviços
     const cards = document.querySelectorAll(".card-modal");
@@ -92,12 +92,12 @@ document.addEventListener("DOMContentLoaded", function() {
         let services = localStorage.getItem("services");
         if (services === "") services = [];
         else services = services.split(",");
-        
+
         const serviceName = card.id;
-        if (services.includes(serviceName)){ card.classList.add("selected");}
-        else {card.classList.remove("selected");}
-        
-        if (card.classList.contains("selected")){card.style.border = "2px solid teal";}
+        if (services.includes(serviceName)) { card.classList.add("selected"); }
+        else { card.classList.remove("selected"); }
+
+        if (card.classList.contains("selected")) { card.style.border = "2px solid teal"; }
         else { card.style.border = "none"; }
         // Final do código para adicionar a classe selected e o border
         // baseado no localStorage
@@ -106,19 +106,19 @@ document.addEventListener("DOMContentLoaded", function() {
         card.addEventListener("click", function (event) {
             event.preventDefault();
             if (!localStorage.getItem("services")) localStorage.setItem("services", "");
-            
+
             services = localStorage.getItem("services");
             if (services === "") services = [];
             else services = services.split(",");
 
             const serviceName = card.id;
             card.classList.toggle("selected");
-            
+
             if (card.classList.contains("selected")) card.style.border = "2px solid teal";
             else card.style.border = "none";
-            
+
             if (!localStorage.getItem("services")) localStorage.setItem("services", "");
-            
+
             if (card.classList.contains("selected")) services.push(serviceName);
             else {
                 const index = services.indexOf(serviceName);
@@ -129,13 +129,13 @@ document.addEventListener("DOMContentLoaded", function() {
         // Final do código baseado nos cliques para adicionar os serviços ao localStorage
     });
     // Final do código para selecionar os serviços
-    
+
     // Funcao para validar a abertuda do modal
     function validateModalOpening() {
         if (new Date(checkin) > new Date(checkout)) {
             alert("A data de check-out deve ser posterior à data de check-in");
             document.getElementById("checkout-date").style.border = "2px solid red";
-            return false;        
+            return false;
         }
         if (checkin === "" || checkout === "" || guests === "" || room === "") {
             alert("Preencha todos os campos para prosseguir");
@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function() {
         return true;
     }
     // Final da funcao para validar a abertuda do modal
-    
+
     // Codigo para o checkin, checkout, tipo de quarto e adultos no localStorage
     const continueBtn = document.getElementById("continue-btn");
     continueBtn.addEventListener("click", function (event) {
