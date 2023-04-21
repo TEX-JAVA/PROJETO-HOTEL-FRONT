@@ -13,19 +13,15 @@ function validadeLogin() {
             senha: senha.value
         }) // Converte os dados para JSON e envia no corpo da requisição
     })
-        .then(response => {
-            if (response.ok) {
-                const name = email.split('@')
-                // Se a resposta foi bem sucedida, manipula os dados recebidos
-                alert(`Seja bem-vindo ${name[0]}`);
-            } else {
-                // Se a resposta foi mal sucedida, lança um erro
-                throw new Error("Usuário não localizado");
-            }
+        .then((response) => response.json())
+        .then((data) => {
+            alert(
+                data["nome"] +
+                `\n Seja bem-vindo ${data["nome"]}`
+            );
         })
-        .catch(error => {
-            // Trata os erros
-            console.error(error);
+        .catch((error) => {
+            alert(error);
         });
 }
 
