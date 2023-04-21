@@ -4,30 +4,30 @@ const Iemail = document.querySelector('.email-registe');
 const Isenha = document.querySelector('.password-registe');
 
 function cadastrar() {
-    fetch('http://localhost:8080/usuarios', {
-        method: 'POST',
+    fetch("http://localhost:8080/usuarios", {
+        method: "POST",
         headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json",
         },
         body: JSON.stringify({
             nome: Inome.value,
             email: Iemail.value,
             senha: Isenha.value,
-            classeUsuarioId: 2
-        }) // Converte os dados para JSON e envia no corpo da requisição
+            classeUsuarioId: 2,
+        }),
     })
-        .then(response => {
-            if (response.ok) {
-                // Se a resposta foi bem sucedida, manipula os dados recebidos
-                alert("Usuário criado com sucesso!");
-            } else {
-                // Se a resposta foi mal sucedida, lança um erro
-                throw new Error("Não foi possível criar o usuário.");
-            }
+        .then((response) => response.json())
+        .then((data) => {
+            alert(
+                "Nome: " +
+                data["nome"] +
+                "\nE-mail: " +
+                data["email"] +
+                "\nCadastrado com Sucesso!!"
+            );
         })
-        .catch(error => {
-            // Trata os erros
-            console.error(error);
+        .catch((error) => {
+            alert(error);
         });
 }
 
