@@ -2110,7 +2110,7 @@ button:hover {
 
 /* TELA DE REGISTRO */
 
-.form-registe {
+.form-register {
   margin: 0 auto;
   max-width: 600px;
   padding: 20px;
@@ -2118,13 +2118,13 @@ button:hover {
   border-radius: 5px;
 }
 
-.label-registe {
+.label-register {
   display: block;
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-.input-registe {
+.input-register {
   width: 100%;
   padding: 10px;
   border: none;
@@ -2150,7 +2150,7 @@ button:hover {
 }
 
 /* Estilos para o cabeçalho da página */
-.h2-registe {
+.h2-register {
   text-align: center;
   font-size: 32px;
   margin-bottom: 30px;

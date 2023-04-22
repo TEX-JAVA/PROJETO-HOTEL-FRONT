@@ -9,9 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     /* Selecionar apartamento */
-
-
-
     /*  */
     // Código para selecionar os serviços
     const cards = document.querySelectorAll(".card");

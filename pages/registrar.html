@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;600&display=swap" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/1770fde015.js" crossorigin="anonymous"></script>
     <script src="../js/routes/cadastrar.js" defer></script>
+    <script src="./js/routes/login.js" defer></script>
 </head>
 
 <body>
@@ -69,7 +70,7 @@
                         <i class="fa-solid fa-xmark" id="cancel"></i>
                         <p id="visitante">Olá, Visitante!</p>
                     </label>
-                    <form action="#" method="post">
+                    <form class="form-login" method="post">
                         <div class="login_form">
                             <ul class="login_list">
                                 <li>
@@ -83,12 +84,14 @@
                                     <label for="senha" class="salvar-senha-label">Salvar senha</label>
                                 </div>
                                 <li>
-                                    <button type="button" class="login_button" value="Login" id="login">Login</button>
+                                    <button type="submit" class="login_button" value="Login" id="login">
+                                        Login
+                                    </button>
                                 </li>
                             </ul>
                             <div class="login_suporte">
                                 <a href="#">Esqueci minha senha</a>
-                                <a href="#">Não tenho uma conta</a>
+                                <a href="./pages/registrar.html">Não tenho uma conta</a>
                             </div>
                         </div>
                     </form>
@@ -152,21 +155,20 @@
     </header>
     <main class="registrar">
         <div class="container">
-            <h2 class="h2-registe">Registre-se</h2>
-            <form class="form-registe" method="post">
-                <label class="label-registe" for="name">Nome:</label>
-                <input class="input-registe name-registe" type="text" id="name" name="name"><br><br>
+            <h2 class="h2-register">Registre-se</h2>
+            <form class="form-register" method="post">
+                <label class="label-register" for="name">Nome:</label>
+                <input class="input-register name-register" type="text" id="name" name="name"><br><br>
 
-                <label class="label-registe" for="email">E-mail:</label>
-                <input class="input-registe email-registe" type="email" id="email" name="email"><br><br>
+                <label class="label-register" for="email">E-mail:</label>
+                <input class="input-register email-register" type="email" id="email" name="email"><br><br>
 
-                <label class="label-registe" for="password">Senha:</label>
-                <input class="input-registe password-registe" type="password" id="password" name="password"><br><br>
+                <label class="label-register" for="password">Senha:</label>
+                <input class="input-register password-register" type="password" id="password" name="password"><br><br>
 
                 <input class="input-submit" type="submit" value="Confirmar">
             </form>
         </div>
-
     </main>
 </body>
 
