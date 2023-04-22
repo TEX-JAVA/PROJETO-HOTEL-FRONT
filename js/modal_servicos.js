@@ -2,12 +2,12 @@ const servicos = JSON.parse(localStorage.getItem("servicos"));
 
 function servicosSelecionados() {
 	let selecionados = [];
-	let servicos = document.getElementsByName("servicos");
+	let servicosHotel = document.getElementsByName("servicos");
 
-	servicos.forEach((i) => {
+	servicosHotel.forEach((i) => {
 		if (i.checked) {
-			servico = JSON.parse(i.getAttribute("value"));
-			selecionados.push(servico);
+			servicoHotel = JSON.parse(i.getAttribute("value"));
+			selecionados.push(servicoHotel);
 		}
 	});
 
