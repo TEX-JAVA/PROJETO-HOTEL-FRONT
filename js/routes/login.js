@@ -1,49 +1,53 @@
-const formularioLogin = document.querySelector(".form-login");
+import { preencherLocalStorage } from "./infohotel.js";
+
+export const formularioLogin = document.querySelector(".form-login");
+export let usuarioSalvo = JSON.parse(localStorage.getItem("usuario"));
 const email = document.querySelector("#login_email");
 const senha = document.querySelector("#login_senha");
+const btnSair = document.getElementById("sair");
 
-document.addEventListener("DOMContentLoaded", function () {
-	const usuarioSalvo = JSON.parse(localStorage.getItem("usuario"));
-	if (usuarioSalvo !== null) {
-		document.getElementById(
-			"visitante"
-		).innerHTML = `Olá! ${usuarioSalvo.nome}`;
-		document.getElementById("menu-sidebar-visitante").innerHTML =
-			usuarioSalvo.nome;
-	}
-});
-
-function validarLogin() {
+export async function validarLogin() {
 	if (!email.value || !senha.value) {
 		return alert("Preencha todos os campos");
 	}
 
-	fetch(`http://localhost:8080/usuarios/validar-senha`, {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({
-			email: email.value,
-			senha: senha.value,
-		}),
-	})
-		.then((response) => response.json())
-		.then((data) => {
+	try {
+		const response = await fetch(
+			`http://localhost:8080/usuarios/validar-senha`,
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					email: email.value,
+					senha: senha.value,
+				}),
+			}
+		);
+
+		if (response.ok) {
+			const data = await response.json();
 			localStorage.setItem("usuario", JSON.stringify(data));
-			const usuarioSalvo = JSON.parse(localStorage.getItem("usuario"));
-			document.getElementById(
-				"visitante"
-			).innerHTML = `Olá! ${usuarioSalvo.nome}`;
-			document.getElementById("menu-sidebar-visitante").innerHTML =
-				usuarioSalvo.nome;
-		})
-		.catch((error) => {
-			alert(error);
-		});
+			usuarioSalvo = data;
+			atualizarInterfaceUsuario(usuarioSalvo);
+		} else {
+			throw new Error(`Erro ${response.status}: ${response.statusText}`);
+		}
+	} catch (error) {
+		alert(error);
+	}
 }
 
-formularioLogin.addEventListener("submit", (event) => {
-	event.preventDefault();
-	validarLogin();
-});
+function atualizarInterfaceUsuario(usuario) {
+	document.getElementById("visitante").innerHTML = `Olá! ${usuario.nome}`;
+	document.getElementById("menu-sidebar-visitante").innerHTML = usuario.nome;
+	preencherLocalStorage();
+}
+
+btnSair.onclick = () => {
+	localStorage.clear("usuario");
+	document.getElementById("visitante").innerHTML = `Olá, Visitante!`;
+	document.getElementById("menu-sidebar-visitante").innerHTML = "Login";
+	location.reload();
+};
