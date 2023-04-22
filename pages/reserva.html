@@ -11,8 +11,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;600&display=swap" rel="stylesheet" />
-    <script type="module" src="./js/routes/infohotel.js"></script>
-    <script src="../js/validate/reservav2.js" defer></script>
+    <script type="module" src="../js/routes/infohotel.js"></script>
+    <script src="../js/modal_servicos.js" async></script>
+    <script src="../js/validate/val_reserva.js" async></script>
     <script src="https://kit.fontawesome.com/1770fde015.js" crossorigin="anonymous"></script>
 </head>
 
@@ -70,6 +71,7 @@
                         <i class="fa-solid fa-xmark" id="cancel"></i>
                         <p id="visitante">Olá, Visitante!</p>
                     </label>
+                    <div id="modal-davi" class"></div>
                     <form class="form-login" method="post">
                         <div class="login_form">
                             <ul class="login_list">
@@ -168,11 +170,11 @@
                     <tr class="reservaTr2">
                         <td>
                             <label for="data_entrada">CHECK-IN</label>
-                            <input type="date" name="data_entrada" id="data_entrada" />
+                            <input type="date" name="data_entrada" id="checkin-date" />
                         </td>
                         <td>
                             <label for="data_saida">CHECK-OUT</label>
-                            <input type="date" name="data_saida" id="data_saida" />
+                            <input type="date" name="data_saida" id="checkout-date" />
                         </td>
                         <td>
                             <label for="">QUANTIDADE</label>
@@ -185,9 +187,9 @@
                                 <option selected="selected">
                                     Selecione
                                 </option>
-                                <option value="classic">Classic</option>
-                                <option value="executive">Executive</option>
-                                <option value="valor3">Premium</option>
+                                <option value="1">Classic</option>
+                                <option value="2">Executive</option>
+                                <option value="3">Premium</option>
                             </select>
                         </td>
                         <td>
@@ -209,12 +211,9 @@
                     <div class="div-pa">
                         <h1>_CLASSIC</h1>
                         <p>
-                            Lorem ipsum, dolor sit amet consectetur
-                            adipisicing elit. Sequi temporibus error
-                            voluptatem non sit? Ratione eos, omnis quam quis
-                            quo hic cum officiis id quidem non
+                            O quarto Classic é uma opção econômica, mas sem abrir mão do conforto. É um quarto
+                            aconchegante e bem equipado, com tudo o que é necessário para uma estadia agradável.
                         </p>
-                        <a class="button-c" id="btn-classic">SELECIONAR</a>
                     </div>
                 </div>
 
@@ -225,12 +224,10 @@
                     <div class="div-pa">
                         <h1>_EXECUTIVE</h1>
                         <p>
-                            Lorem ipsum, dolor sit amet consectetur
-                            adipisicing elit. Sequi temporibus error
-                            voluptatem non sit? Ratione perspiciatis cumque
-                            quam quis quo hic
+                            O quarto Executive é uma opção mais sofisticada, ideal para quem busca um pouco mais de luxo
+                            e conforto. É um quarto espaçoso e elegante, com decoração refinada e diversos serviços
+                            adicionais disponíveis.
                         </p>
-                        <a class="button-c" id="btn-executive">SELECIONAR</a>
                     </div>
                 </div>
 
@@ -242,12 +239,11 @@
                     <div class="div-pa">
                         <h1>_PREMIUM</h1>
                         <p>
-                            Lorem ipsum, dolor sit amet consectetur
-                            adipisicing voluptatem non sit? Ratione eos,
-                            omnis vel doloribus perspiciatis cumque quam
-                            quis quo hic
+                            O quarto Premium é a opção mais luxuosa e exclusiva, com todo o requinte e conforto que se
+                            pode esperar de um hotel de alto padrão. É um quarto espaçoso e sofisticado, com decoração
+                            refinada e diversos serviços de luxo disponíveis. É a escolha perfeita para quem quer ter
+                            uma experiência inesquecível.
                         </p>
-                        <a class="button-c" id="btn-premium">SELECIONAR</a>
                     </div>
                 </div>
             </div>
@@ -256,122 +252,118 @@
                     <h3 class="resumo-direita">Resumo da reserva</h3>
                     <div id="border-if-failure">
                         <p>APARTAMENTO:</p>
-                        <select id="room-type" style="width: 120px; height: 24px">
-                            <option value="classic">Classic</option>
-                            <option value="executive">Executive</option>
-                            <option value="premium">Premium</option>
+                        <select id="apartamento" style="width: 120px; height: 24px">
+                            <option value="1">Classic</option>
+                            <option value="2">Executive</option>
+                            <option value="3">Premium</option>
                         </select>
-
-                        <!-- <input
-                                type="text"
-                                style="width: 120px; height: 24px"
-                                placeholder=" Escolha seu apto"
-                            /> -->
                         <p>CHECK-IN:</p>
-                        <input id="checkin-date" type="date" style="text-align: center; height: 24px" />
+                        <input id="checkin-data" type="date" style="text-align: center; height: 24px" required />
                         <p>CHECK-OUT:</p>
-                        <input id="checkout-date" type="date" style="text-align: center; height: 24px" />
+                        <input id="checkout-data" type="date" style="text-align: center; height: 24px" required />
                         <p>PESSOAS:</p>
-                        <input id="nb-adults" type="number" min="1" max="10" style="
-                                    width: 60px;
-                                    height: 30px;
-                                    text-align: center;
-                                " />
+                        <input id="n-adultos" type="number" min="1" max="10" value="1"
+                            style="width: 60px; height: 30px; text-align: center" required />
                         <br />
                         <br />
+
                         <a class="a-servicos" data-modal="modal-one">Adicionar mais serviços</a>
+                        </p>
+                        <br>
+                        <br>
+                        <a class="button-b" data-modal="modal-two" id="calcular-btn">CALCULAR</a>
+                        <br>
+                        <p id="total-reserva"></p>
                     </div>
-                    <a class="button-b" data-modal="modal-two" id="continue-btn">CONTINUAR</a>
                 </div>
             </div>
-        </div>
-        <!-- Modal Mais serviços-->
-        <div class="modal" id="modal-one">
-            <div class="modal-bg modal-exit"></div>
-            <div class="modal-container">
-                <h1>Mais Serviços</h1>
-                <h2>
-                    Escolha os serviços que gostaria que acompanhasse sua
-                    reserva.
-                </h2>
-                <ul class="card-wrapper">
-                    <li class="card-modal" id="wifi">
-                        <img src="https://images.unsplash.com/photo-1611916656173-875e4277bea6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHw&ixlib=rb-1.2.1&q=80&w=400"
-                            alt="" />
-                        <h3><a href="">WiFi</a></h3>
-                        <p>R$ 16/dia por pessoa</p>
-                    </li>
-                    <li class="card-modal" id="breakfast">
-                        <img src="https://images.unsplash.com/photo-1611083360739-bdad6e0eb1fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHw&ixlib=rb-1.2.1&q=80&w=400"
-                            alt="" />
-                        <h3><a href="">Café da Manhã</a></h3>
-                        <p>R$ 30/dia por pessoa</p>
-                    </li>
-                    <li class="card-modal" id="mini-bar">
-                        <img src="https://images.unsplash.com/photo-1613230485186-2e7e0fca1253?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHw&ixlib=rb-1.2.1&q=80&w=400"
-                            alt="" />
-                        <h3><a href="">Frigobar a vontade</a></h3>
-                        <p>R$ 120/dia por pessoa</p>
-                    </li>
-                    <li class="card-modal" id="kids-events">
-                        <img src="https://images.unsplash.com/photo-1613230485186-2e7e0fca1253?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHw&ixlib=rb-1.2.1&q=80&w=400"
-                            alt="" />
-                        <h3><a href="">Entretenimento Infantil</a></h3>
-                        <p>R$ 40/dia por criança</p>
-                    </li>
-                    <li class="card-modal" id="gym">
-                        <img src="https://images.unsplash.com/photo-1613230485186-2e7e0fca1253?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHw&ixlib=rb-1.2.1&q=80&w=400"
-                            alt="" />
-                        <h3><a href="">Academia</a></h3>
-                        <p>R$ 10/dia por pessoa</p>
-                    </li>
-                </ul>
-                <button class="modal-close modal-exit">X</button>
-            </div>
-        </div>
-        <!-- Modal Mais Serviços-->
-        <!-- Modal Resumo das Reservas-->
-        <div class="modal" id="modal-two">
-            <div class="modal-bg modal-exit"></div>
-            <div class="modal-container reservations">
-                <div class="left-side">
-                    <img src="https://i.ibb.co/DzZyM1v/hotel.jpg" alt="" />
-                </div>
-                <div class="right-side">
-                    <h2>Hotel H</h2>
-                    <h4>O hotel que faz sentido para você</h4>
-                    <ul>
-                        <li>
-                            <p>Chegada</p>
-                            <h3 id="checkin-date-value"></h3>
+            <!-- Modal Mais serviços-->
+            <div class="modal" id="modal-one">
+                <div class="modal-bg modal-exit"></div>
+                <div class="modal-container">
+                    <h1>Mais Serviços</h1>
+                    <h2>
+                        Escolha os serviços que gostaria que acompanhasse sua
+                        reserva.
+                    </h2>
+                    <ul class="card-wrapper">
+                        <li class="card-modal" id="wifi">
+                            <img src="https://images.unsplash.com/photo-1611916656173-875e4277bea6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHw&ixlib=rb-1.2.1&q=80&w=400"
+                                alt="" />
+                            <h3><a href="">WiFi</a></h3>
+                            <p>R$ 16/dia por pessoa</p>
                         </li>
-                        <li>
-                            <p>Saida</p>
-                            <h3 id="checkout-date-value"></h3>
+                        <li class="card-modal" id="breakfast">
+                            <img src="https://images.unsplash.com/photo-1611083360739-bdad6e0eb1fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHw&ixlib=rb-1.2.1&q=80&w=400"
+                                alt="" />
+                            <h3><a href="">Café da Manhã</a></h3>
+                            <p>R$ 30/dia por pessoa</p>
                         </li>
-                        <li>
-                            <p>Numero de convidados</p>
-                            <h3 id="nb-adults-value"></h3>
+                        <li class="card-modal" id="mini-bar">
+                            <img src="https://images.unsplash.com/photo-1613230485186-2e7e0fca1253?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHw&ixlib=rb-1.2.1&q=80&w=400"
+                                alt="" />
+                            <h3><a href="">Frigobar a vontade</a></h3>
+                            <p>R$ 120/dia por pessoa</p>
                         </li>
-                        <li>
-                            <p>Inclui:</p>
-                            <h3 id="services-list-value"></h3>
+                        <li class="card-modal" id="kids-events">
+                            <img src="https://images.unsplash.com/photo-1613230485186-2e7e0fca1253?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHw&ixlib=rb-1.2.1&q=80&w=400"
+                                alt="" />
+                            <h3><a href="">Entretenimento Infantil</a></h3>
+                            <p>R$ 40/dia por criança</p>
                         </li>
-                        <li>
-                            <p>Preço por Adulto</p>
-                            <h3 id="price-per-adult"></h3>
-                        </li>
-                        <li>
-                            <p>Preço Total</p>
-                            <h3 id="total-price"></h3>
+                        <li class="card-modal" id="gym">
+                            <img src="https://images.unsplash.com/photo-1613230485186-2e7e0fca1253?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHw&ixlib=rb-1.2.1&q=80&w=400"
+                                alt="" />
+                            <h3><a href="">Academia</a></h3>
+                            <p>R$ 10/dia por pessoa</p>
                         </li>
                     </ul>
-                    <button class="btn">Confirmar a Reserva</button>
+                    <button class="modal-close modal-exit">X</button>
                 </div>
-                <button class="modal-close modal-exit">X</button>
             </div>
-        </div>
-        <!-- Modal Resumo das Reservas-->
+            <!-- Modal Mais Serviços-->
+            <!-- Modal Resumo das Reservas-->
+            <div class="modal" id="modal-two">
+                <div class="modal-bg modal-exit"></div>
+                <div class="modal-container reservations">
+                    <div class="left-side">
+                        <img src="https://i.ibb.co/DzZyM1v/hotel.jpg" alt="" />
+                    </div>
+                    <div class="right-side">
+                        <h2>Hotel H</h2>
+                        <h4>O hotel que faz sentido para você</h4>
+                        <ul>
+                            <li>
+                                <p>Chegada</p>
+                                <h3 id="checkin-date-value"></h3>
+                            </li>
+                            <li>
+                                <p>Saida</p>
+                                <h3 id="checkout-date-value"></h3>
+                            </li>
+                            <li>
+                                <p>Numero de convidados</p>
+                                <h3 id="nb-adults-value"></h3>
+                            </li>
+                            <li>
+                                <p>Inclui:</p>
+                                <h3 id="services-list-value"></h3>
+                            </li>
+                            <li>
+                                <p>Preço por Adulto</p>
+                                <h3 id="price-per-adult"></h3>
+                            </li>
+                            <li>
+                                <p>Preço Total</p>
+                                <h3 id="total-price"></h3>
+                            </li>
+                        </ul>
+                        <button class="btn">Confirmar a Reserva</button>
+                    </div>
+                    <button class="modal-close modal-exit">X</button>
+                </div>
+            </div>
+            <!-- Modal Resumo das Reservas-->
     </main>
     <footer style="visibility: visible">
         <div class="container-footer">
