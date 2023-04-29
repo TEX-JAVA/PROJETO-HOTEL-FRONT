@@ -39,7 +39,7 @@ function cadastrar() {
 			);
 		})
 		.catch((error) => {
-			alert(JSON.stringify(error));
+			alert(error);
 		});
 }
 

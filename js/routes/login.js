@@ -32,7 +32,7 @@ export async function validarLogin() {
 			usuarioSalvo = data;
 			atualizarInterfaceUsuario(usuarioSalvo);
 		} else {
-			throw new Error(`Erro ${response.status}: ${response.statusText}`);
+			throw new Error(`E-mail ou Senha incorretos.`);
 		}
 	} catch (error) {
 		alert(error);
@@ -43,6 +43,7 @@ function atualizarInterfaceUsuario(usuario) {
 	document.getElementById("visitante").innerHTML = `Olá! ${usuario.nome}`;
 	document.getElementById("menu-sidebar-visitante").innerHTML = usuario.nome;
 	preencherLocalStorage();
+	location.reload();
 }
 
 btnSair.onclick = () => {

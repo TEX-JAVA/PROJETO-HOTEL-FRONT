@@ -158,13 +158,16 @@
             <h2 class="h2-register">Registre-se</h2>
             <form class="form-register" method="post">
                 <label class="label-register" for="name">Nome:</label>
-                <input class="input-register name-register" type="text" id="name" name="name"><br><br>
+                <input class="input-register name-register" type="text" id="name" name="name" required
+                    title="Preencha com seu nome."><br><br>
 
                 <label class="label-register" for="email">E-mail:</label>
-                <input class="input-register email-register" type="email" id="email" name="email"><br><br>
+                <input class="input-register email-register" type="email" id="email" name="email" required
+                    title="Digite um e-mail válido."><br><br>
 
                 <label class="label-register" for="password">Senha:</label>
-                <input class="input-register password-register" type="password" id="password" name="password"><br><br>
+                <input class="input-register password-register" type="password" id="password" name="password"
+                    required><br><br>
 
                 <input class="input-submit" type="submit" value="Confirmar">
             </form>
